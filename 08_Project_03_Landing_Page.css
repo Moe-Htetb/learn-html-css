@@ -1,0 +1,143 @@
+/* =============================================================================
+   PROJECT 03 — LANDING PAGE (CSS explained)
+   Uses: sticky header, flex navbar, hero typography (clamp), grid features, footer.
+   ============================================================================= */
+
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #475569;
+  --primary: #4f46e5; /* indigo CTA */
+  --card: #ffffff;
+  --line: #e2e8f0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* All links: use parent text color, no underline (we style per section) */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Centered content column */
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+/* Sticky header stays at top while scrolling; bottom border separates from hero */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+}
+
+/* Navbar: flex row — logo left, menu right, space-between */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+}
+
+.logo {
+  font-weight: 800;
+}
+
+/* Nav links in a row with gap (no margin hacks) */
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu a {
+  color: var(--muted);
+}
+
+.menu a:hover {
+  color: var(--text);
+}
+
+/* Hero vertical padding */
+.hero {
+  padding: 4rem 0 3rem;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+/* clamp(min, preferred, max) = responsive font size without media query */
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+/* Constrain line length for readability (max-width + centered) */
+.hero p {
+  margin: 1rem auto 1.5rem;
+  max-width: 650px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* CTA button — inline-block so padding works like a button */
+.cta {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+}
+
+.cta:hover {
+  background: #4338ca;
+}
+
+/* Feature cards: CSS Grid, responsive columns via auto-fit */
+.features {
+  padding-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.feature {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 1rem;
+}
+
+.feature h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: #fff;
+  padding: 1rem 0;
+  color: var(--muted);
+  text-align: center;
+}

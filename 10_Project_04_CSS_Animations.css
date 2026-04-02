@@ -1,0 +1,180 @@
+/* =============================================================================
+   PROJECT 04 — CSS Animations
+   Demonstrates:
+   - transitions (hover effects)
+   - keyframes (@keyframes for bob + fade)
+   - prefers-reduced-motion for accessibility
+   ============================================================================= */
+
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --line: #e5e7eb;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Fade-in animation when page loads */
+.animated-in {
+  animation: fadeUp 650ms ease-out both;
+}
+
+/* Avatar bobbing using keyframes */
+.bob {
+  animation: bob 1.2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card (box model + layout) */
+.card {
+  width: min(100%, 34rem);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.avatar-wrap {
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 999px;
+  border: 4px solid #dbeafe;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.role {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.bio {
+  margin: 1rem auto 1.4rem;
+  max-width: 52ch;
+}
+
+/* Button row uses flexbox */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Base button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  /* Transition makes hover feel smooth */
+  transition: transform 180ms ease, background-color 180ms ease,
+    box-shadow 180ms ease, border-color 180ms ease;
+}
+
+/* Primary button state */
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.18);
+}
+
+/* Ghost button state */
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+  border-color: #c7dbff;
+}
+
+/* Hover: transition of transform/background/box-shadow */
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 14px 24px rgba(37, 99, 235, 0.22);
+}
+
+.btn.ghost:hover {
+  background: #dbeafe;
+}
+
+/* Simple “press” effect */
+.btn:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* Accessibility: reduce motion if user requests it */
+@media (prefers-reduced-motion: reduce) {
+  .animated-in,
+  .bob {
+    animation: none !important;
+  }
+
+  .btn {
+    transition: none !important;
+  }
+}
+

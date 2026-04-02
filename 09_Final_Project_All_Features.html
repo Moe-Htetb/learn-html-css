@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Final Project - LearnHub</title>
+    <link rel="stylesheet" href="09_Final_Project_All_Features.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header id="site-header" class="site-header">
+      <div class="container nav">
+        <a class="logo" href="#">LearnHub</a>
+        <nav class="menu" aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#courses">Courses</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="btn btn-sm" href="#pricing">Get Started</a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Beginner Friendly Web Learning</p>
+            <h1>Build Real Projects with HTML + CSS</h1>
+            <p class="lead">
+              Practice structure, box model, spacing, selectors, typography,
+              flexbox, and grid through guided examples.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#courses">Start Learning</a>
+              <a class="btn btn-outline" href="#contact">Ask a Question</a>
+            </div>
+            <ul class="hero-points">
+              <li>Semantic HTML structure</li>
+              <li>Clean, reusable CSS classes</li>
+              <li>Responsive layout patterns</li>
+            </ul>
+          </div>
+          <aside class="hero-card" aria-label="Quick stats card">
+            <h2>Progress Card</h2>
+            <p class="muted">Track your beginner journey.</p>
+            <div class="stat-row">
+              <span>Lessons completed</span>
+              <strong>8 / 10</strong>
+            </div>
+            <div class="stat-row">
+              <span>Projects built</span>
+              <strong>3</strong>
+            </div>
+            <div class="stat-row">
+              <span>Final project</span>
+              <strong>In progress</strong>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="container">
+          <h2 class="section-title">Core Features</h2>
+          <div class="feature-grid">
+            <article class="card feature-card">
+              <h3>Box Model Mastery</h3>
+              <p>Use padding, border, margin, and box-sizing correctly.</p>
+              <span class="tag">Spacing</span>
+            </article>
+            <article class="card feature-card">
+              <h3>Selector Confidence</h3>
+              <p>Write class, id, and pseudo-class selectors with clarity.</p>
+              <span class="tag">Specificity</span>
+            </article>
+            <article class="card feature-card">
+              <h3>Modern Layouts</h3>
+              <p>Combine flexbox and grid for clean responsive UIs.</p>
+              <span class="tag">Flex + Grid</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="courses" class="section section-alt">
+        <div class="container">
+          <h2 class="section-title">Course Modules</h2>
+          <table class="course-table">
+            <caption>
+              Beginner roadmap
+            </caption>
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Topic</th>
+                <th>Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>HTML Fundamentals</td>
+                <td>Easy</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>CSS + Box Model</td>
+                <td>Easy</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>Selectors + Specificity</td>
+                <td>Easy</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>Display, Flex, Grid</td>
+                <td>Medium</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container">
+          <h2 class="section-title">Pricing</h2>
+          <div class="pricing-grid">
+            <article class="card price-card">
+              <h3>Starter</h3>
+              <p class="price">$0<span>/month</span></p>
+              <ul>
+                <li>Basic lessons</li>
+                <li>Practice exercises</li>
+                <li>Community support</li>
+              </ul>
+              <a class="btn btn-full" href="#">Choose Starter</a>
+            </article>
+
+            <article class="card price-card popular">
+              <p class="badge">Most Popular</p>
+              <h3>Pro</h3>
+              <p class="price">$12<span>/month</span></p>
+              <ul>
+                <li>All starter features</li>
+                <li>Project feedback</li>
+                <li>Bonus templates</li>
+              </ul>
+              <a class="btn btn-full" href="#">Choose Pro</a>
+            </article>
+
+            <article class="card price-card">
+              <h3>Team</h3>
+              <p class="price">$29<span>/month</span></p>
+              <ul>
+                <li>Team dashboard</li>
+                <li>Shared progress tracking</li>
+                <li>Priority support</li>
+              </ul>
+              <a class="btn btn-full" href="#">Choose Team</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-alt">
+        <div class="container contact-layout">
+          <div>
+            <h2 class="section-title">Contact Us</h2>
+            <p class="muted">
+              Ask for feedback on your HTML/CSS projects. We reply within 24
+              hours.
+            </p>
+          </div>
+          <form class="contact-form" action="#" method="post">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" />
+
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+            />
+
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic">
+              <option>HTML basics</option>
+              <option>CSS box model</option>
+              <option>Flexbox/Grid</option>
+            </select>
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Tell us what you need help with"
+            ></textarea>
+
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>© 2026 LearnHub. Built with HTML + CSS.</p>
+        <a href="#site-header">Back to top</a>
+      </div>
+    </footer>
+  </body>
+</html>

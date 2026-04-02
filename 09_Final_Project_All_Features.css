@@ -1,0 +1,440 @@
+/* =============================================================================
+   FINAL PROJECT — LearnHub (CSS explained)
+   Covers: variables, reset, sticky header, flex, grid, forms, tables, media queries.
+   ============================================================================= */
+
+/* --- Theme tokens (colors + spacing-related names) --- */
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9; /* alternating section background */
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Smooth scroll when clicking in-page anchor links (#features, etc.) */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  line-height: 1.6;
+}
+
+/* Centered page column; min() caps width on large screens */
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+/* Accessibility: skip link hidden until keyboard Tab focuses it */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 20;
+  background: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Sticky navbar: stays visible; blur + semi-transparent = frosted glass */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+/* Flex row: logo | menu | button; gap for spacing between flex items */
+.nav {
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.35rem 0.45rem;
+  border-radius: 0.45rem;
+}
+
+.menu a:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+/* Primary button — used on <a> and <button> */
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+/* :focus-visible = keyboard focus ring only when needed (better than outline always on) */
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.menu a:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.btn-sm {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.95rem;
+}
+
+/* Outline ghost button — border + transparent fill */
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background: #dbeafe;
+}
+
+.btn-full {
+  width: 100%;
+  text-align: center;
+}
+
+.hero {
+  padding: 4.5rem 0 3rem;
+  /* border: 1px solid red; */
+}
+
+/* Two-column hero: main text + side card; fr = fraction of free space */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.2rem;
+  /* align-items: stretch; */
+}
+
+/* Small label above headline */
+.eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+/* lead paragraph — max-width in ch (character width) for readable line length */
+.lead {
+  max-width: 60ch;
+  margin: 0.9rem 0 1.2rem;
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.hero-points {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.hero-card {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+  padding: 1rem;
+}
+
+.hero-card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Stat rows: label left, value right */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+/* Striped alternate background for visual rhythm */
+.section-alt {
+  background: var(--surface-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+/* Reusable card shell */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: var(--surface);
+  padding: 1rem;
+}
+
+/* Exactly 3 columns on desktop; minmax(0,1fr) prevents flex overflow bugs */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.feature-card p {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Table: collapse borders so cells share one line; overflow hidden keeps rounded corners */
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.course-table caption {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.course-table th,
+.course-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+/* Zebra striping even rows */
+.course-table tbody tr:nth-child(odd) {
+  background: #f8fafc;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.price-card {
+  position: relative; /* for absolute .badge */
+}
+
+.price-card h3 {
+  margin: 0;
+}
+
+.price {
+  margin: 0.4rem 0 0.7rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* "/month" smaller inside .price */
+.price span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.price-card ul {
+  margin: 0 0 1rem;
+  padding-left: 1.15rem;
+}
+
+.popular {
+  border-color: #93c5fd;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12);
+}
+
+/* Badge pinned to top-right of pricing card */
+.badge {
+  position: absolute;
+  right: 0.85rem;
+  top: 0.85rem;
+  margin: 0;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e3a8a;
+  padding: 0.2rem 0.55rem;
+  font-weight: 700;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Form as vertical stack: label + field repeat */
+.contact-form {
+  display: grid;
+  gap: 0.55rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  padding: 1rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  font: inherit; /* match body font */
+  background: #fff;
+}
+
+textarea {
+  resize: vertical; /* user can drag height only */
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: #fff;
+  padding: 1rem 0;
+}
+
+.footer-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.footer-layout a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* --- Responsive: tablet (≤900px) — stack 2-column grids to one column --- */
+@media (max-width: 900px) {
+  .hero-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid,
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Responsive: mobile (≤640px) — single column; hide nav links (demo only) --- */
+@media (max-width: 640px) {
+  .menu {
+    display: none;
+  }
+
+  .feature-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 3.2rem;
+  }
+}

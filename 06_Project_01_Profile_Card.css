@@ -1,0 +1,154 @@
+/* =============================================================================
+   PROJECT 01 — PROFILE CARD (CSS explained line by line)
+   Comments describe WHAT each rule does and WHY it is there.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   :root — global CSS variables (custom properties)
+   You define names once; use them everywhere with var(--name).
+   Change colors in one place instead of hunting through the file.
+   ----------------------------------------------------------------------------- */
+:root {
+  --bg: #f3f4f6; /* page background gray */
+  --card-bg: #ffffff; /* card surface white */
+  --text: #111827; /* main text (near black) */
+  --muted: #6b7280; /* secondary text (gray) */
+  --primary: #2563eb; /* button / accent blue */
+}
+
+/* -----------------------------------------------------------------------------
+   Universal box-sizing
+   * = every element; ::before / ::after = pseudo-elements used with content
+   border-box: width/height include padding + border (easier mental math).
+   Without this, padding adds to width and layouts feel “wrong.”
+   ----------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   body — the whole page
+   margin: 0 removes default browser margin (white gap around edges).
+   font-family: stack of fonts; browser picks first that exists.
+   color / background use variables from :root.
+   ----------------------------------------------------------------------------- */
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* -----------------------------------------------------------------------------
+   .page — wrapper around the card (centers content on screen)
+   min-height: 100vh = at least full viewport height (full screen tall).
+   display: flex + align-items + justify-content = center child horizontally & vertically.
+   padding: 1.5rem = breathing room on small screens so card doesn’t touch edges.
+   ----------------------------------------------------------------------------- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* -----------------------------------------------------------------------------
+   .card — the white “profile” box (box model in action)
+   width: min(100%, 22rem) = never wider than parent, cap at 22rem (~352px).
+   text-align: center = title, text, button centered.
+   border: 1px solid = thin outline; border-radius = rounded corners.
+   padding = space INSIDE the border (between border and content).
+   box-shadow = soft drop shadow (depth, not part of box model width).
+   ----------------------------------------------------------------------------- */
+.card {
+  width: min(100%, 22rem);
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* -----------------------------------------------------------------------------
+   .avatar — circular image
+   width / height same = square image area.
+   border-radius: 999px = fully rounded = circle (if image is square).
+   border = ring around the image; margin-bottom = space below before title.
+   ----------------------------------------------------------------------------- */
+.avatar {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 999px;
+  border: 4px solid #dbeafe;
+  margin-bottom: 1rem;
+}
+
+/* -----------------------------------------------------------------------------
+   .name — main heading (person name)
+   margin: 0 removes default h1 margin so spacing is controlled by .role/.bio.
+   font-size: 1.5rem = relative to root font (often 24px if root is 16px).
+   ----------------------------------------------------------------------------- */
+.name {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* -----------------------------------------------------------------------------
+   .role — subtitle line (“Frontend Learner”)
+   margin: 0.35rem 0 0 = small gap above role, none below (flow continues).
+   color: muted gray; font-weight: 600 = semi-bold.
+   ----------------------------------------------------------------------------- */
+.role {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* -----------------------------------------------------------------------------
+   .bio — paragraph text
+   margin: vertical spacing between role and button.
+   line-height: 1.6 = readable line spacing (multiplier of font size).
+   color: slightly darker gray than muted for body copy.
+   ----------------------------------------------------------------------------- */
+.bio {
+  margin: 1rem 0 1.25rem;
+  line-height: 1.6;
+  color: #374151;
+}
+
+/* -----------------------------------------------------------------------------
+   .btn — link styled as a button (class on <a>)
+   display: inline-block = respect padding; still flows inline (like a button chip).
+   text-decoration: none = remove default underline on links.
+   color: white text; background: primary blue.
+   padding = clickable area inside the “button” shape.
+   border-radius = rounded corners of the button.
+   ----------------------------------------------------------------------------- */
+.btn {
+  /* display: inline-block; */
+  text-decoration: none;
+  color: #fff;
+  background: var(--primary);
+  padding: 0.65rem 1rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+}
+
+/* -----------------------------------------------------------------------------
+   .btn:hover — when mouse is over the link
+   Only background changes (darker blue); gives interactive feedback.
+   :hover is a pseudo-class (state), not a separate HTML element.
+   ----------------------------------------------------------------------------- */
+.btn:hover {
+  background: #1d4ed8;
+}
