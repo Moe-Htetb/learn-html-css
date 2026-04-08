@@ -1,0 +1,563 @@
+/* =============================================================================
+   Flex & Grid demo — components for html/flex_grid.html
+   ============================================================================= */
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --radius: 0.75rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+code {
+  font-size: 0.9em;
+  background: #e2e8f0;
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+}
+
+/* --- Layout shell: main grows so footer stays at bottom --- */
+main {
+  flex: 1;
+}
+
+.wrap {
+  width: min(960px, 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content {
+  padding-bottom: 3rem;
+}
+
+/* --- Buttons (used in flex toolbars) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.btn.ghost:hover {
+  background: #f1f5f9;
+}
+
+/* =============================================================================
+   FLEX: sticky header navbar
+   ============================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+}
+
+.logo {
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* =============================================================================
+   FLEX: centered hero
+   ============================================================================= */
+.hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38vh;
+  padding: 2.5rem 1rem;
+  background: linear-gradient(180deg, #eff6ff 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-inner {
+  text-align: center;
+  max-width: 40rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+
+.hero-inner h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.lead {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+}
+
+.section-title {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.35rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--line);
+}
+
+/* --- Demo block wrapper --- */
+.demo-block {
+  margin-bottom: 2rem;
+}
+
+.demo-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.demo-desc {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   FLEX: toolbar (space-between)
+   ============================================================================= */
+.toolbar-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.toolbar-left {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* =============================================================================
+   FLEX: card row with wrap
+   ============================================================================= */
+.card-row-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.mini-card {
+  flex: 1 1 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.mini-card strong {
+  font-size: 1.05rem;
+}
+
+.mini-card span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* =============================================================================
+   FLEX: media object
+   ============================================================================= */
+.media-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.media-avatar {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dbeafe;
+  color: var(--primary-dark);
+  font-weight: 800;
+  border-radius: 999px;
+}
+
+.media-body {
+  min-width: 0;
+}
+
+.media-name {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.media-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   FLEX: vertical form
+   ============================================================================= */
+.form-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 22rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.form-flex label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-flex input {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+.form-flex .btn {
+  margin-top: 0.25rem;
+  align-self: flex-start;
+}
+
+/* =============================================================================
+   GRID: responsive product cards
+   ============================================================================= */
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.grid-card {
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.grid-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.grid-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =============================================================================
+   GRID: app shell (sidebar + main)
+   ============================================================================= */
+.grid-app {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+  min-height: 200px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.grid-sidebar {
+  padding: 1rem;
+  background: #f1f5f9;
+  border-right: 1px solid var(--line);
+}
+
+.grid-sidebar ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.grid-main {
+  padding: 1rem;
+  background: var(--surface);
+}
+
+.grid-main p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   GRID: bento (template areas)
+   ============================================================================= */
+.grid-bento {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "a a"
+    "b c"
+    "d d";
+}
+
+.grid-bento > div {
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+.bento-a {
+  grid-area: a;
+  background: #eff6ff;
+}
+
+.bento-b {
+  grid-area: b;
+}
+
+.bento-c {
+  grid-area: c;
+}
+
+.bento-d {
+  grid-area: d;
+  background: #f0fdf4;
+}
+
+/* =============================================================================
+   GRID + FLEX: pricing-style cards with sticky footer row
+   ============================================================================= */
+.grid-combo {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.combo-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.combo-card--featured {
+  border-color: #93c5fd;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+}
+
+.combo-card h4 {
+  margin: 0 0 0.35rem;
+}
+
+.combo-desc {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.combo-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.combo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.price {
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+/* =============================================================================
+   FLEX: footer
+   ============================================================================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: #fff;
+  padding: 1rem 0;
+}
+
+.footer-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.footer-flex p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer-flex a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-flex a:hover {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+   Responsive
+   ============================================================================= */
+@media (max-width: 720px) {
+  .nav-links {
+    display: none;
+  }
+
+  .grid-app {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .grid-combo {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-bento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d";
+  }
+}

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex &amp; Grid — Examples &amp; Components</title>
+    <link rel="stylesheet" href="../css/flex_grid.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <!-- Flex: navbar — logo left, links + button right -->
+        <nav class="nav-flex" aria-label="Main">
+          <a class="logo" href="#">FlexGrid</a>
+          <ul class="nav-links">
+            <li><a href="#flex-sections">Flex</a></li>
+            <li><a href="#grid-sections">Grid</a></li>
+            <li><a href="#patterns">Patterns</a></li>
+          </ul>
+          <button type="button" class="btn btn-sm">Sign in</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Flex: centered hero -->
+      <section class="hero-flex" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <p class="eyebrow">Demo page</p>
+          <h1 id="hero-title">Flex &amp; Grid components</h1>
+          <p class="lead">
+            Each block below is a reusable pattern. Open DevTools and toggle
+            <code>display</code> to see how layout changes.
+          </p>
+        </div>
+      </section>
+
+      <div class="wrap content">
+        <h2 id="flex-sections" class="section-title">Flexbox examples</h2>
+
+        <!-- Flex: toolbar / action row -->
+        <section class="demo-block" aria-labelledby="flex-toolbar-label">
+          <h3 id="flex-toolbar-label" class="demo-title">
+            Toolbar (space-between + gap)
+          </h3>
+          <p class="demo-desc">
+            <code>display: flex</code> +
+            <code>justify-content: space-between</code> +
+            <code>align-items: center</code>
+          </p>
+          <div class="toolbar-flex">
+            <span class="toolbar-left">12 items selected</span>
+            <div class="toolbar-actions">
+              <button type="button" class="btn ghost">Archive</button>
+              <button type="button" class="btn">Delete</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Flex: card row with wrap -->
+        <section class="demo-block" aria-labelledby="flex-cards-label">
+          <h3 id="flex-cards-label" class="demo-title">
+            Card row (flex-wrap)
+          </h3>
+          <p class="demo-desc">
+            Cards sit in a row; on small screens they wrap to the next line.
+          </p>
+          <div class="card-row-flex">
+            <article class="mini-card">
+              <strong>Alpha</strong>
+              <span>Flex item</span>
+            </article>
+            <article class="mini-card">
+              <strong>Beta</strong>
+              <span>Flex item</span>
+            </article>
+            <article class="mini-card">
+              <strong>Gamma</strong>
+              <span>Flex item</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- Flex: media object (icon + text) -->
+        <section class="demo-block" aria-labelledby="flex-media-label">
+          <h3 id="flex-media-label" class="demo-title">
+            Media object (icon + text)
+          </h3>
+          <p class="demo-desc">
+            <code>align-items: flex-start</code> keeps the avatar top-aligned.
+          </p>
+          <div class="media-flex">
+            <div class="media-avatar" aria-hidden="true">A</div>
+            <div class="media-body">
+              <strong class="media-name">Alex</strong>
+              <p class="media-text">
+                Short description next to a fixed-size square. Common in
+                comments and notifications.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Flex: stacked form (column) -->
+        <section class="demo-block" aria-labelledby="flex-form-label">
+          <h3 id="flex-form-label" class="demo-title">
+            Form stack (flex-direction: column)
+          </h3>
+          <p class="demo-desc">
+            Vertical rhythm with <code>gap</code> instead of margin on every
+            field.
+          </p>
+          <form class="form-flex" action="#" method="get">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" />
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+            />
+            <button type="submit" class="btn">Submit</button>
+          </form>
+        </section>
+
+        <h2 id="grid-sections" class="section-title">Grid examples</h2>
+
+        <!-- Grid: responsive product cards -->
+        <section class="demo-block" aria-labelledby="grid-products-label">
+          <h3 id="grid-products-label" class="demo-title">
+            Responsive card grid (auto-fit + minmax)
+          </h3>
+          <p class="demo-desc">
+            Columns appear automatically; minimum card width ~200px.
+          </p>
+          <div class="grid-products">
+            <article class="grid-card">
+              <h4>Item 1</h4>
+              <p>Grid cell</p>
+            </article>
+            <article class="grid-card">
+              <h4>Item 2</h4>
+              <p>Grid cell</p>
+            </article>
+            <article class="grid-card">
+              <h4>Item 3</h4>
+              <p>Grid cell</p>
+            </article>
+            <article class="grid-card">
+              <h4>Item 4</h4>
+              <p>Grid cell</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Grid: sidebar layout -->
+        <section class="demo-block" aria-labelledby="grid-sidebar-label">
+          <h3 id="grid-sidebar-label" class="demo-title">
+            App shell (sidebar + main)
+          </h3>
+          <p class="demo-desc">
+            <code>grid-template-columns: 220px 1fr</code> — sidebar fixed
+            width, main takes the rest.
+          </p>
+          <div class="grid-app">
+            <aside class="grid-sidebar">
+              <strong>Sidebar</strong>
+              <ul>
+                <li>Dashboard</li>
+                <li>Settings</li>
+              </ul>
+            </aside>
+            <div class="grid-main">
+              <strong>Main content</strong>
+              <p>
+                This area grows with available width. Resize the window to see
+                the sidebar stay 220px.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Grid: bento / mosaic -->
+        <section class="demo-block" aria-labelledby="grid-bento-label">
+          <h3 id="grid-bento-label" class="demo-title">
+            Bento layout (grid-template-areas)
+          </h3>
+          <p class="demo-desc">
+            Named areas make complex layouts readable in CSS.
+          </p>
+          <div class="grid-bento">
+            <div class="bento-a">A — wide</div>
+            <div class="bento-b">B</div>
+            <div class="bento-c">C</div>
+            <div class="bento-d">D — wide</div>
+          </div>
+        </section>
+
+        <h2 id="patterns" class="section-title">Combined pattern</h2>
+
+        <!-- Flex inside grid cell -->
+        <section class="demo-block" aria-labelledby="combo-label">
+          <h3 id="combo-label" class="demo-title">
+            Grid card with flex footer
+          </h3>
+          <p class="demo-desc">
+            Outer: CSS Grid for columns. Inner card: flex column so the footer
+            sticks to the bottom with <code>margin-top: auto</code>.
+          </p>
+          <div class="grid-combo">
+            <article class="combo-card">
+              <h4>Plan A</h4>
+              <p class="combo-desc">Short feature list.</p>
+              <ul class="combo-list">
+                <li>One</li>
+                <li>Two</li>
+              </ul>
+              <div class="combo-footer">
+                <span class="price">$0</span>
+                <button type="button" class="btn btn-sm">Choose</button>
+              </div>
+            </article>
+            <article class="combo-card combo-card--featured">
+              <h4>Plan B</h4>
+              <p class="combo-desc">Popular — flex footer pushes down.</p>
+              <ul class="combo-list">
+                <li>Everything in A</li>
+                <li>Extra support</li>
+              </ul>
+              <div class="combo-footer">
+                <span class="price">$12</span>
+                <button type="button" class="btn btn-sm">Choose</button>
+              </div>
+            </article>
+            <article class="combo-card">
+              <h4>Plan C</h4>
+              <p class="combo-desc">Tallest content defines row height.</p>
+              <ul class="combo-list">
+                <li>Team</li>
+              </ul>
+              <div class="combo-footer">
+                <span class="price">$29</span>
+                <button type="button" class="btn btn-sm">Choose</button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-flex">
+        <p>Flex &amp; Grid demo — edit <code>html/flex_grid.html</code></p>
+        <a href="#">Back to top</a>
+      </div>
+    </footer>
+  </body>
+</html>
