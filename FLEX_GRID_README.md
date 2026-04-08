@@ -1,151 +1,313 @@
-## Flex + Grid Demo README
+## CSS Properties Guide: Flexbox + Grid
 
-This guide explains the files:
-- `html/flex_grid.html`
-- `css/flex_grid.css`
+This file explains **CSS properties** directly, especially:
+- `display: flex`
+- `display: grid`
+- related layout properties you use with each one
 
-They are a practice project that shows common **Flexbox** and **CSS Grid** components in one page.
+Use this as a quick reference while reading `css/flex_grid.css`.
 
 ---
 
-## How to Run
+## 1) `display` (the starting point)
 
-Open this file in browser:
+`display` controls how an element behaves in layout.
 
-```bash
-open /Users/moehtetoo/Desktop/notes/html/flex_grid.html
+```css
+.box { display: block; }  /* new line, full width by default */
+.row { display: flex; }   /* one-dimensional layout */
+.grid { display: grid; }  /* two-dimensional layout */
 ```
 
-The HTML file links to CSS with:
+- Use **flex** for row/column alignment.
+- Use **grid** for rows + columns together.
 
-```html
-<link rel="stylesheet" href="../css/flex_grid.css" />
+---
+
+## 2) Flexbox Properties (Parent Container)
+
+### `display: flex`
+Turns children into flex items.
+
+```css
+.container {
+  display: flex;
+}
 ```
 
-So keep this folder structure:
-- `html/` for HTML
-- `css/` for CSS
+### `flex-direction`
+Main axis direction.
+
+```css
+flex-direction: row;         /* left to right (default) */
+flex-direction: column;      /* top to bottom */
+```
+
+### `justify-content`
+Aligns items along the **main axis**.
+
+```css
+justify-content: flex-start;
+justify-content: center;
+justify-content: space-between;
+justify-content: space-around;
+```
+
+### `align-items`
+Aligns items along the **cross axis**.
+
+```css
+align-items: stretch;      /* default */
+align-items: center;
+align-items: flex-start;
+align-items: flex-end;
+```
+
+### `flex-wrap`
+Controls wrapping.
+
+```css
+flex-wrap: nowrap;   /* default, single line */
+flex-wrap: wrap;     /* move to next line if needed */
+```
+
+### `gap`
+Space between flex items (better than margins in many cases).
+
+```css
+gap: 1rem;
+```
 
 ---
 
-## What You Will Learn
+## 3) Flex Item Properties (Children)
 
-### Flexbox patterns
-1. **Navbar flex row**
-   - logo left, nav links center/right, button right
-   - properties: `display: flex`, `justify-content: space-between`, `gap`
+### `flex-grow`, `flex-shrink`, `flex-basis`
+Common shorthand:
 
-2. **Hero center section**
-   - center content vertically and horizontally
-   - properties: `display: flex`, `align-items`, `justify-content`
+```css
+flex: 1 1 200px;
+```
 
-3. **Toolbar/action row**
-   - text on left, action buttons on right
-   - useful for admin/dashboard UI
+Meaning:
+- `1` grow if extra space exists
+- `1` shrink if needed
+- `200px` preferred starting size
 
-4. **Wrapping card row**
-   - cards wrap automatically when screen becomes narrow
-   - properties: `flex-wrap`, `flex: 1 1 ...`
+### `align-self`
+Override one item’s cross-axis alignment.
 
-5. **Media object**
-   - avatar/icon + text block beside it
-   - common in chat/comments/notifications
+```css
+.special-item {
+  align-self: flex-start;
+}
+```
 
-6. **Form stack**
-   - vertical form fields using `flex-direction: column` and `gap`
+### `margin-top: auto` (very useful)
+In a column flex card, pushes footer/button to bottom.
 
----
-
-### Grid patterns
-1. **Responsive card grid**
-   - properties: `grid-template-columns: repeat(auto-fit, minmax(...))`
-   - automatically changes number of columns by screen size
-
-2. **App shell layout**
-   - fixed sidebar + fluid content area
-   - properties: `grid-template-columns: 220px 1fr`
-
-3. **Bento layout**
-   - named areas for custom shape layout
-   - property: `grid-template-areas`
-
-4. **Grid + Flex combined**
-   - outer layout uses grid
-   - each card uses flex column
-   - footer is pushed to bottom with `margin-top: auto`
+```css
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.card-footer {
+  margin-top: auto;
+}
+```
 
 ---
 
-## File Structure Overview
+## 4) Grid Properties (Parent Container)
 
-### `html/flex_grid.html`
-- contains all demo sections
-- each section has a title + short description
-- semantic elements used: `header`, `main`, `section`, `article`, `footer`
+### `display: grid`
+Turns children into grid items.
 
-### `css/flex_grid.css`
-- global variables (`:root`) for easy theme editing
-- reusable button styles (`.btn`, `.btn-sm`, `.btn.ghost`)
-- component styles grouped by topic:
-  - flex components
-  - grid components
-  - combined patterns
-- responsive media query at the bottom
+```css
+.grid {
+  display: grid;
+}
+```
+
+### `grid-template-columns`
+Defines column structure.
+
+```css
+grid-template-columns: 1fr 1fr 1fr;   /* 3 equal columns */
+grid-template-columns: 220px 1fr;     /* fixed sidebar + flexible content */
+```
+
+### `grid-template-rows`
+Defines row structure (optional, often auto).
+
+```css
+grid-template-rows: auto auto;
+```
+
+### `gap`
+Space between rows and columns.
+
+```css
+gap: 1rem;
+```
+
+### `repeat()`
+Cleaner way to write repeated tracks.
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+### `minmax()`
+Set min and max track size.
+
+```css
+grid-template-columns: repeat(3, minmax(200px, 1fr));
+```
+
+### `auto-fit` with `minmax()` (responsive favorite)
+
+```css
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+```
+
+Behavior:
+- Creates as many columns as fit
+- Each column at least `200px`
+- Expands columns to fill extra width
+
+### `grid-template-areas`
+Named layout areas.
+
+```css
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+}
+```
+
+Then assign areas:
+
+```css
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+```
 
 ---
 
-## Quick Edit Guide
+## 5) Grid Item Properties (Children)
 
-### Change color theme
-Edit variables in `:root`:
-- `--primary`
-- `--bg`
-- `--surface`
-- `--text`
+### `grid-column` / `grid-row`
+Make items span multiple tracks.
 
-### Make cards bigger
-Edit padding/radius:
-- `.mini-card`
-- `.grid-card`
-- `.combo-card`
+```css
+.wide {
+  grid-column: span 2;
+}
+```
 
-### Change responsive behavior
-Edit breakpoint section:
-- `@media (max-width: 720px)`
+### `place-self`
+Align one item in its cell (shortcut for `align-self` + `justify-self`).
 
----
-
-## Suggested Practice Tasks
-
-1. Add a new **Flex** section: vertical timeline using `display: flex`.
-2. Add a new **Grid** section: photo gallery with `auto-fit`.
-3. Add hover animation to cards using:
-   - `transition: transform 180ms ease;`
-   - `transform: translateY(-4px);`
-4. Add dark mode variables with:
-   - `@media (prefers-color-scheme: dark) { ... }`
+```css
+.item {
+  place-self: center;
+}
+```
 
 ---
 
-## Common Mistakes (and fixes)
+## 6) Related Layout Properties
 
-1. **CSS not loading**
-   - check relative path `../css/flex_grid.css`
+### `width: min(...)`
+Useful for page wrappers.
 
-2. **Flex items not aligning**
-   - parent needs `display: flex`
-   - use `align-items` and `justify-content` on parent, not child
+```css
+width: min(960px, 92%);
+```
 
-3. **Grid not creating columns**
-   - parent needs `display: grid`
-   - define `grid-template-columns`
+### `position: sticky`
+Keeps header visible while scrolling.
 
-4. **Layout breaks on mobile**
-   - add/update media query rules
-   - avoid fixed widths when possible
+```css
+position: sticky;
+top: 0;
+```
+
+### `box-sizing: border-box`
+Makes sizing easier (includes padding + border in width).
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+### Media query (responsive changes)
+
+```css
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
 
 ---
 
-## One-line Summary
+## 7) Flex vs Grid (When to use which)
 
-This project is a practical reference of real UI components built with Flexbox and Grid, designed for beginner-to-intermediate CSS learning.
+- Use **Flexbox** for:
+  - navbar rows
+  - button groups
+  - centering content
+  - 1D layouts (row OR column)
+
+- Use **Grid** for:
+  - card galleries
+  - dashboard/page sections
+  - 2D layouts (rows AND columns)
+
+- Use **both together**:
+  - grid for overall page
+  - flex inside components
+
+---
+
+## 8) Common mistakes
+
+1. Setting `justify-content` on child instead of parent.
+2. Forgetting `display: flex` / `display: grid` on container.
+3. Using fixed widths everywhere (breaks responsiveness).
+4. Not adding media queries for small screens.
+5. Using margins for spacing when `gap` is cleaner.
+
+---
+
+## Quick Cheat Sheet
+
+```css
+/* FLEX */
+.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* GRID */
+.parent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+```
