@@ -1,0 +1,39 @@
+.hi {
+  border: 1px solid black;
+  padding: 10px 30px 50px 70px;
+  /* top right bottom left */
+
+  width: 100px;
+  /* display: inline; */
+  /* margin: 20px;
+ */
+  /* margin-top: 20px;
+
+  margin-left: 20px; */
+
+  margin: 20px 0 0 20px;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+/* body {
+  border: 1px solid purple;
+} */
+/* .container {
+  border: 1px solid red;
+  width: 100%;
+  height: 100vh;
+} */
+
+.h1,
+#h2 {
+  color: red;
+}
+.h1:hover {
+  color: green;
+}
+
+.link {
+  text-decoration: none;
+}
